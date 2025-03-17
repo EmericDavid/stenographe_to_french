@@ -2,7 +2,7 @@ def get_data_from_file(path_file: str):
     """
     Parser les phonégrammes du fichier pour avoir les différents sténogrammes
     """
-    phonemes_dict = {}
+    steno_dict = {}
     mots = {}
 
     with open(path_file, 'r', encoding='utf-8') as file:
@@ -10,21 +10,20 @@ def get_data_from_file(path_file: str):
             if line.strip("\n\r ") == '':
                 continue
 
-            word, phonegrammes = line.split(' :: ')
+            word, stenogrammes = line.split(' :: ')
 
-            phonegrammes = phonegrammes.strip().split()
+            stenogrammes = stenogrammes.strip().split()
 
             tr = []
-            for p in phonegrammes:
-                if p not in phonemes_dict.keys():
-                    phonemes_dict[p] = len(phonemes_dict)
+            for p in stenogrammes:
+                if p not in steno_dict.keys():
+                    steno_dict[p] = len(steno_dict)
                 
-                tr.append(phonemes_dict[p])
-
+                tr.append(steno_dict[p])
             
             mots[word] = tr
         
-    return mots, phonemes_dict
+    return mots, steno_dict
 
 
 
