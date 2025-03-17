@@ -1,3 +1,5 @@
+import re
+
 def get_data_from_file(path_file: str):
     """
     Parser les phonégrammes du fichier pour avoir les différents sténogrammes
@@ -9,9 +11,9 @@ def get_data_from_file(path_file: str):
         for line in file:
             if line.strip("\n\r ") == '':
                 continue
+            line = re.sub(r"\{.\}", "", line)
 
             word, stenogrammes = line.split(' :: ')
-
             stenogrammes = stenogrammes.strip().split()
 
             tr = []
