@@ -1,9 +1,9 @@
-def get_data_fron_file(path_file: str):
+def get_data_from_file(path_file: str):
     """
     Parser les phonégrammes du fichier pour avoir les différents sténogrammes
     """
     phonemes_dict = {}
-    mots = []
+    mots = {}
 
     with open(path_file, 'r', encoding='utf-8') as file:
         for line in file:
@@ -11,7 +11,8 @@ def get_data_fron_file(path_file: str):
                 continue
 
             word, phonegrammes = line.split(' :: ')
-            phonegrammes = phonegrammes.split(' ')
+            
+            phonegrammes = phonegrammes.strip("\n\r").split(' ')
 
             tr = []
             for p in phonegrammes:
@@ -20,11 +21,13 @@ def get_data_fron_file(path_file: str):
                 
                 tr.append(phonemes_dict[p])
             
-            mots.append((word, tr))
+            mots[word] = tr
         
     return mots, phonemes_dict
 
-a, b = get_data_fron_file('test.steno.txt')
 
-print(b)
-print(a)
+
+if __name__ == "__main__":
+    dico_mots, dico_phonemes = get_data_from_file('test.steno.txt')
+
+    print(dico_phonemes)
