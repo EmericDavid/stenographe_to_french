@@ -40,4 +40,3 @@ if __name__ == "__main__":
         for key, value in dico_mots.items():
             value = ' '.join(map(str, value))
             file.write(f"{key} :: {value}\n")
-    
