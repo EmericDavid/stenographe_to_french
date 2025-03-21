@@ -11,7 +11,7 @@ def get_data_from_file(path_file: str):
         for line in file:
             if line.strip("\n\r ") == '':
                 continue
-            line = re.sub(r"\{.\}", "", line)
+            line = re.sub(r"\{.+?\}", "", line)
 
             word, stenogrammes = line.split(' :: ')
             stenogrammes = stenogrammes.strip().split()
@@ -30,13 +30,13 @@ def get_data_from_file(path_file: str):
 
 
 if __name__ == "__main__":
-    dico_mots, dico_phonemes = get_data_from_file('test.steno.txt')
+    dico_mots, dico_phonemes = get_data_from_file('train+valid.steno.txt')
 
     with open('dico_phonegraphes.txt', 'w', encoding='utf-8') as file:
         for key, value in dico_phonemes.items():
             file.write(f"{key} :: {value}\n")
     
-    with open('test.steno.as_indices.txt', 'w', encoding='utf-8') as file:
+    with open('train+valid.steno.as_indices.txt', 'w', encoding='utf-8') as file:
         for key, value in dico_mots.items():
             value = ' '.join(map(str, value))
             file.write(f"{key} :: {value}\n")

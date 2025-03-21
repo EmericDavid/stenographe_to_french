@@ -5,3 +5,4 @@ class Encoder(nn.Module):
         super(Encoder, self).__init__()
         self.embedding = nn.Embedding(vocab_size, embed_size)
         self.lstm = nn.LSTMCell(embed_size, hidden_size)
+        self.d_hidden = hidden_size
