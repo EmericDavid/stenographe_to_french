@@ -6,3 +6,8 @@ Link to donwload wikipedia dump : https://mirror.accum.se/mirror/wikimedia.org/d
 https://github.com/dilettacal/g2p_pytorch_wiktionary/tree/master
 
 https://fehiepsi.github.io/blog/grapheme-to-phoneme/
+
+
+
+Sentencepiece :
+https://github.com/google/sentencepiece
