@@ -1,1 +1,8 @@
 /data/frwiki*
+/data/translated_phrases.csv
+/data/wikipedia_phrases.csv
+/data/wikipedia_phrases_clean.csv
+/data/train.steno.txt
+/data/test.steno.txt
+/data/__pycache__
+__pycache__
