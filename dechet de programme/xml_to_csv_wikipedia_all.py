@@ -287,7 +287,7 @@ def write_results(result_queue, output_file, num_processes):
 
 def main():
     # Input file path
-    file_path = 'data/wikipedia_output/frwiki-20250301-pages-articles3.xml-p2550823p2977214'
+    file_path = 'data/wikipedia_output/frwiki-20250301-pages-articles.xml'
     
     # Check if file exists
     if not os.path.isfile(file_path):

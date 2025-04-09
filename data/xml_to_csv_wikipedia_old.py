@@ -147,6 +147,10 @@ def is_valid_sentence(sentence):
     if "small" in sentence:
         return False
     
+    # Ignorer les phrases contenant "ref" qui sont des résidus de formatage
+    if "ref" in sentence:
+        return False
+    
     # Ignorer les entrées de type dictionnaire/encyclopédie sans verbe
     if re.match(r'^[A-Z][a-z]+\s*:', sentence) or re.match(r'^[A-Z][a-z]+\s+\(', sentence):
         if not is_complete_sentence(sentence):
@@ -307,12 +311,14 @@ def post_process_csv(input_file, output_file):
             phrase = row[1]
             
             # Supprimer les guillemets qui entourent toute la phrase
-            if phrase.startswith('"') and phrase.endswith('"'):
-                phrase = phrase[1:-1]
+            if phrase.startswith('"'):
+                phrase = phrase[1:]
+            if phrase.endswith('"'):
+                phrase = phrase[:-1]
             
             # Vérifier tous les critères encore une fois pour être sûr
-            if is_valid_sentence(phrase):
-                rows_to_keep.append(row)
+            #if is_valid_sentence(phrase):
+            rows_to_keep.append(row)
         
         pbar.close()
     

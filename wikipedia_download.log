@@ -1,0 +1,24 @@
+2025-04-09 09:36:00,256 - INFO - Downloading https://mirror.accum.se/mirror/wikimedia.org/dumps/frwiki/20250301/frwiki-20250301-pages-articles3.xml-p1050823p2550822.bz2 to data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822.bz2
+2025-04-09 09:36:12,271 - INFO - Successfully downloaded data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822.bz2
+2025-04-09 09:37:23,227 - INFO - Successfully decompressed data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822.bz2
+2025-04-09 09:37:24,075 - INFO - Verifying XML structure of data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822
+2025-04-09 09:37:24,076 - INFO - First page found!
+2025-04-09 09:37:24,076 - INFO - XML structure of data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822 is valid
+2025-04-09 09:39:14,708 - INFO - File data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822.bz2 already exists. Skipping download.
+2025-04-09 09:39:14,709 - INFO - Verifying XML structure of data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822
+2025-04-09 09:39:14,709 - INFO - First page found!
+2025-04-09 09:39:14,710 - INFO - XML structure of data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822 is valid
+2025-04-09 09:41:42,036 - INFO - File data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822.bz2 already exists. Skipping download.
+2025-04-09 09:41:42,037 - INFO - Verifying XML structure of data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822
+2025-04-09 09:41:42,037 - INFO - First page found!
+2025-04-09 09:41:42,037 - INFO - XML structure of data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822 is valid
+2025-04-09 09:45:20,614 - INFO - File data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822.bz2 already exists. Skipping download.
+2025-04-09 09:45:20,615 - INFO - Verifying XML structure of data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822
+2025-04-09 09:45:20,615 - INFO - First page found!
+2025-04-09 09:45:20,616 - INFO - XML structure of data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822 is valid
+2025-04-09 09:48:05,663 - INFO - Downloading https://mirror.accum.se/mirror/wikimedia.org/dumps/frwiki/20250301/frwiki-20250301-pages-articles3.xml-p1050823p2550822.bz2 to data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822.bz2
+2025-04-09 09:48:34,414 - INFO - Successfully downloaded data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822.bz2
+2025-04-09 09:49:40,245 - INFO - Successfully decompressed data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822.bz2
+2025-04-09 09:49:41,140 - INFO - Verifying XML structure of data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822
+2025-04-09 09:49:41,141 - INFO - First page found!
+2025-04-09 09:49:41,141 - INFO - XML structure of data/wikipedia_output\frwiki-20250301-pages-articles3.xml-p1050823p2550822 is valid
