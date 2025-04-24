@@ -1,0 +1,11 @@
+# conda create -n env-wikipedia python=3.12 tqdm nltk requests
+# conda activate env-wikipedia
+name: env-wikipedia
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.12
+  - tqdm
+  - nltk
+  - requests
