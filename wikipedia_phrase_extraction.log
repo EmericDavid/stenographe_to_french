@@ -1,6 +1,0 @@
-2025-03-25 11:33:20,916 - INFO - Total pages to process: 165384
-2025-03-25 11:39:50,711 - INFO - Extraction complete. Total sentences: 6964620
-2025-03-25 11:40:51,353 - INFO - CSV file created: data/wikipedia_output/frwiki-20250301-pages-articles1-p1p306134_nopost.csv
-2025-03-25 11:40:51,354 - INFO - Total sentences extracted: 6964620
-2025-03-25 11:41:34,106 - INFO - CSV file created: data/wikipedia_output/frwiki-20250301-pages-articles1-p1p306134.csv
-2025-03-25 11:41:34,107 - INFO - Total sentences extracted: 6964620

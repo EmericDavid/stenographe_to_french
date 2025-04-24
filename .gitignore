@@ -1,1 +1,5 @@
-/data/wikipedia_output/*wiki*
+/data/wikipedia_dump/
+/data/wikipedia_output/
+/data/wikipedia_server/
+/dechet de programme/
+/__pycache__/

@@ -147,10 +147,6 @@ def is_valid_sentence(sentence):
     if "small" in sentence:
         return False
     
-    # Ignorer les phrases contenant "ref" qui sont des résidus de formatage
-    if "ref" in sentence:
-        return False
-    
     # Ignorer les entrées de type dictionnaire/encyclopédie sans verbe
     if re.match(r'^[A-Z][a-z]+\s*:', sentence) or re.match(r'^[A-Z][a-z]+\s+\(', sentence):
         if not is_complete_sentence(sentence):
@@ -241,8 +237,11 @@ def extract_text_from_xml(file_path):
                 if cleaned_text:
                     # Tokeniser le texte en phrases
                     try:
-                        sentences = sent_tokenize(cleaned_text, language='french')
-                        
+                        #sentences = sent_tokenize(cleaned_text, language='french')
+                        # do a test of split with . and ? and !
+                        sentences = re.split(r'(?<=[.!?]) +', cleaned_text)
+
+
                         # Filtrer les phrases
                         filtered_sentences = []
                         for s in sentences:
@@ -282,9 +281,9 @@ def extract_text_from_xml(file_path):
     return all_sentences
 
 def write_to_csv(sentences, output_file):
-    """Écrit les phrases extraites dans un fichier CSV."""
+    """Écrit les phrases extraites dans un fichier CSV avec les phrases entre guillemets."""
     with open(output_file, 'w', newline='', encoding='utf-8') as f:
-        writer = csv.writer(f)
+        writer = csv.writer(f, quoting=csv.QUOTE_ALL)
         writer.writerow(["phrase_steno","phrase_fr"])
         writer.writerows(sentences)
         
@@ -308,30 +307,49 @@ def post_process_csv(input_file, output_file):
         
         for row in reader:
             pbar.update(1)
-            phrase = row[1]
-            
-            # Supprimer les guillemets qui entourent toute la phrase
+            phrase = row[1]  # La phrase est dans la deuxième colonne (index 1)
+
+            # remove " at the start and end of the phrase
             if phrase.startswith('"'):
                 phrase = phrase[1:]
             if phrase.endswith('"'):
                 phrase = phrase[:-1]
+
+            # remove everything between ref and ref (case-insensitive)
+            phrase = re.sub(r' ref*?ref ', '', phrase, flags=re.IGNORECASE).strip()
+
+            # remove the ref name and the name in the "" if it exists (case-insensitive)
+            phrase = re.sub(r'ref name\s+""[^""]+""', '', phrase, flags=re.IGNORECASE).strip()
+
+            # remove ref urls up to the next punctuation (case-insensitive)
+            phrase = re.sub(r'ref[^.,;!?]*[.,;!?]', '', phrase, flags=re.IGNORECASE).strip()
+
+            # remove user comment data (case-insensitive)
+            phrase = re.sub(r'Utilisateur:[^:]*::', '', phrase, flags=re.IGNORECASE).strip()
+
+            # remove "br "
+            phrase = re.sub(r'br\s+', '', phrase).strip()
+
+            # remove bgcolor
+            phrase = re.sub(r'bgcolor\s+"#[^""]+"', '', phrase).strip()
+
+            #if the phrase start by "ref" or Ref, don't append it
+            if phrase.startswith('ref') or phrase.startswith('Ref'):
+                continue
             
-            # Vérifier tous les critères encore une fois pour être sûr
-            #if is_valid_sentence(phrase):
+
             rows_to_keep.append(row)
         
         pbar.close()
     
     # Réécrire le fichier avec les ID réindexés
     with open(output_file, 'w', newline='', encoding='utf-8') as f:
-        writer = csv.writer(f)
+        writer = csv.writer(f, quoting=csv.QUOTE_ALL)
         writer.writerow(header)
         
         for i, row in enumerate(rows_to_keep[1:], 1):  # Commencer à 1 pour sauter l'en-tête
             writer.writerow(['', row[1]])
     
-    total_kept = len(rows_to_keep) - 1  # Soustraire l'en-tête
-    print(f"Post-traitement terminé. {total_kept} phrases conservées sur {total_rows} phrases initiales ({(total_kept/total_rows)*100:.2f}%).")
     print(f"Fichier nettoyé: {output_file}")
 
 def validate_final_dataset(file_path):
@@ -344,9 +362,10 @@ def validate_final_dataset(file_path):
     print(f"Nombre total de phrases dans le jeu de données final: {len(rows)}")
 
 if __name__ == "__main__":
+    file_name = "frwiki-20250301-pages-articles3.xml-p2550823p2977214"
     # Chemin du fichier XML Wikipedia
-    file_path = 'data/wikipedia_output/frwiki-20250301-pages-articles3.xml-p2550823p2977214'
-    #file_path = 'data/wikipedia_output/frwiki-20250301-pages-articles.xml'
+    file_path = f'wikipedia_output/{file_name}'
+    #file_path = 'wikipedia_output/frwiki-20250301-pages-articles.xml'
     
     # Vérifier que le fichier existe
     if not os.path.isfile(file_path):
@@ -354,20 +373,20 @@ if __name__ == "__main__":
         exit(1)
     
     # Créer le dossier de sortie si nécessaire
-    if not os.path.exists('data/wikipedia_output'):
-        os.makedirs('data/wikipedia_output')
+    if not os.path.exists('wikipedia_output'):
+        os.makedirs('wikipedia_output')
     
     # Extraire les phrases
     print("Démarrage de l'extraction des phrases...")
     sentences = extract_text_from_xml(file_path)
     
     # Écrire dans un fichier CSV
-    output_file = 'data/wikipedia_output/wikipedia_phrases_nopost.csv'
+    output_file = f'wikipedia_output/{file_name}_nopost.csv'
     write_to_csv(sentences, output_file)
     
     # Effectuer un post-traitement pour éliminer les lignes problématiques
     print("Démarrage du post-traitement pour éliminer les lignes problématiques...")
-    final_output = 'data/wikipedia_output/wikipedia_phrases.csv'
+    final_output = f'wikipedia_output/{file_name}.csv'
     post_process_csv(output_file, final_output)
     
     # Valider le jeu de données final

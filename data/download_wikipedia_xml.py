@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO,
                         logging.StreamHandler()
                     ])
 
-def download_file(url, output_dir='data/wikipedia_output'):
+def download_file(url, output_dir='wikipedia_dump'):
     """
     Download a file from a given URL with progress tracking
     
@@ -137,7 +137,7 @@ def verify_file(filename):
         logging.error(traceback.format_exc())
         return False
 
-def process_url(url, output_dir='data/wikipedia_output', ram_available_gb=4):
+def process_url(url, output_dir='wikipedia_dump', ram_available_gb=4):
     """
     Complete process for a single URL: download, decompress, and verify
     
