@@ -1,4 +1,7 @@
 /data/wikipedia_dump/
 /data/wikipedia_output/
 /data/wikipedia_server/
+/data/wikipedia_translated/
+/data/wikipedia_translated_V2/
+/log/
 /__pycache__/
